@@ -1,0 +1,794 @@
+{
+	"info": {
+		"_postman_id": "06fb5ee8-ae73-4a82-a410-840f6ef84d6d",
+		"name": "WebApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27791485"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "CorrectPosts",
+							"item": [
+								{
+									"name": "Post Right Account 1",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 50,\r\n    \"AccountNumber\": \"67879879\",\r\n    \"StartDate\": \"2022-12-17\",\r\n    \"EndDate\": \"2024-12-17\",\r\n    \"Address\": \"Moscow\",\r\n    \"Area\": 56.8,\r\n    \"ResidentsIds\": \"5, 8, 9\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Right Account 2",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 51,\r\n    \"AccountNumber\": \"234324\",\r\n    \"StartDate\": \"2020-01-17\",\r\n    \"EndDate\": \"2026-12-17\",\r\n    \"Address\": \"Rostov\",\r\n    \"Area\": 34.8,\r\n    \"ResidentsIds\": \"102, 58, 39\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Right Account 3 Without ID",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"AccountNumber\": \"12\",\r\n    \"StartDate\": \"2022-10-31\",\r\n    \"EndDate\": \"2024-05-03\",\r\n    \"Address\": \"Magnitogorsk\",\r\n    \"Area\": 45.1,\r\n    \"ResidentsIds\": \"1, 2, 3\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Right Account 4",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 100,\r\n    \"AccountNumber\": \"67456546\",\r\n    \"StartDate\": \"2020-01-17\",\r\n    \"EndDate\": \"2026-12-17\",\r\n    \"Address\": \"Ufa\",\r\n    \"Area\": 234.8,\r\n    \"ResidentsIds\": \"98, 45, 23\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WrongPosts",
+							"item": [
+								{
+									"name": "Post Wrong Account Without Account Number",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"StartDate\": \"2022-05-01\",\r\n    \"EndDate\": \"2024-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 98.32,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account Without Start Date",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"EndDate\": \"2024-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 98.32,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account Without End Date",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"2022-05-01\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 98.32,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account Without Address",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"2022-05-01\",\r\n    \"EndDate\": \"2024-05-03\",\r\n    \"Area\": 98.32,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account Without Area",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"2022-05-01\",\r\n    \"EndDate\": \"2024-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account Without Residents Ids",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"2022-05-01\",\r\n    \"EndDate\": \"2024-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 98.32\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account With Same ID That Already Exists",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 51,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"2022-05-01\",\r\n    \"EndDate\": \"2024-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 98.32,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account With Empty Account Number",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"\",\r\n    \"StartDate\": \"2022-05-01\",\r\n    \"EndDate\": \"2024-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 98.32,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account With Already Existing Account Number",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"234324\",\r\n    \"StartDate\": \"2022-05-01\",\r\n    \"EndDate\": \"2024-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 98.32,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account With Too Early Start Date",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"1567-05-01\",\r\n    \"EndDate\": \"2024-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 98.32,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account With Too Early End Date",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"2000-05-01\",\r\n    \"EndDate\": \"234-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 98.32,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account With End Date Earlier Than Start Date",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"2020-05-01\",\r\n    \"EndDate\": \"2011-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 98.32,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account With Empty Address",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"2020-05-01\",\r\n    \"EndDate\": \"2034-05-03\",\r\n    \"Address\": \"\",\r\n    \"Area\": 98.32,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account With Wrong Area",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"2020-05-01\",\r\n    \"EndDate\": \"2034-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": -5,\r\n    \"ResidentsIds\": \"1546, 2234, 3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account With Resident Ids Format",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"2020-05-01\",\r\n    \"EndDate\": \"2034-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 100.4,\r\n    \"ResidentsIds\": \"1546-2234-3453\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Wrong Account With Resident Ids Not Numbers",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"Id\": 56,\r\n    \"AccountNumber\": \"99\",\r\n    \"StartDate\": \"2020-05-01\",\r\n    \"EndDate\": \"2034-05-03\",\r\n    \"Address\": \"Novosibirsk\",\r\n    \"Area\": 100.4,\r\n    \"ResidentsIds\": \"435, gfhgfh, asd\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:7280/api/accounts",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "7280",
+											"path": [
+												"api",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get All Accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7280/api/accounts",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Right Account 1 With Full Account",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 50,\r\n    \"AccountNumber\": \"67879879\",\r\n    \"StartDate\": \"2022-12-17\",\r\n    \"EndDate\": \"2024-12-17\",\r\n    \"Address\": \"Moscow\",\r\n    \"Area\": 56.8,\r\n    \"ResidentsIds\": \"5, 8, 9, 10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7280/api/accounts",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account 2 One Field (Shoudn't work)",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 51,\r\n    \"ResidentsIds\": \"102\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7280/api/accounts",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account 4",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 100,\r\n    \"AccountNumber\": \"67456546\",\r\n    \"StartDate\": \"2020-01-17\",\r\n    \"EndDate\": \"2026-12-17\",\r\n    \"Address\": \"Ufa\",\r\n    \"Area\": 234.8,\r\n    \"ResidentsIds\": \"98, 45, 23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7280/api/accounts",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "accounts/id",
+			"item": [
+				{
+					"name": "Get Account With Id 51",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7280/api/accounts/51",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"accounts",
+								"51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account With ID 50",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AccountNumber\": \"11111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7280/api/accounts/50",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"accounts",
+								"50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account With Id 51",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7280/api/accounts/51",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"accounts",
+								"51"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
