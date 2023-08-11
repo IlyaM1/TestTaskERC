@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        #container{
+            text-align: center;
+        }
+    </style>
+    <title>Account managing</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Лицевые счета</h1>
+
+        <div id="search-filter-block">
+            <div id="search-block">
+                <label for="searchInput">Поиск:</label>
+                <input type="text" id="searchInput">
+                <button id="searchButton">Поиск</button>
+                <button id="filterButton"> Filter</button>
+            </div>
+        </div>
+
+        
+        <div id="accountsBlock">
+            <ul id="accountsList"></ul>
+            <div>
+                <button id="createAccountButton">Создать ЛС</button>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+<script>
+    const accountsList = document.getElementById('accountsList');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const createAccountButton = document.getElementById('createAccountButton');
+
+   async function getAccounts(){
+        const response = await fetch('https://localhost:5075/api/accounts');
+        const data = await response.json();
+        const accounts = JSON.parse(data);
+        return accounts;
+    }
+
+    function renderAccounts(accounts){
+        accountsList.innerHTML = '';
+
+        accounts.forEach(account => 
+        {
+            const listItem = document.createElement('li');
+            listItem.textContent = account.accountNumber;
+            listItem.addEventListener('click', () => sendOnAccountDetailsPage(account));
+            accountsList.appendChild(listItem);
+        }
+        );
+    }
+
+    function sendOnAccountDetailsPage(account){
+        window.location.assign("/" + account.id);
+    }
+
+    function sendOnNewAccountPage(){
+        window.location.assign("/new");
+    }
+
+    function setEventListenersToAllButtons(){
+        createAccountButton.addEventListener('click', () => sendOnNewAccountPage());
+    }
+
+    async function init(){
+        const accounts = await getAccounts();
+        renderAccounts(accounts);
+        setEventListenersToAllButtons();
+    }
+
+    init()
+</script>
+
+
+</body>
+</html>

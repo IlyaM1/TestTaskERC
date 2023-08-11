@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        #container {
+            text-align: center;
+        }
+
+        #dataDiv {
+            border: 5px solid black;
+        }
+
+        /* 
+        p{
+            border: 2px solid black;
+        }
+        .fieldWithInput{
+            width: 90px;
+            display:inline-flex;
+        }
+        .label{
+            width: 100px;
+        }
+        input{
+            width: 200px;
+            height: 50%;
+        } */
+    </style>
+    <title>Account managing</title>
+</head>
+
+<body>
+    <div id="container">
+        <h1 id="accountHeader">Лицевой счет</h1>
+
+        <div id="dataDiv">
+
+            <div class="fieldWithInput">
+                <p class="label">Номер ЛС: </p>
+                <input id="accountNumberInput" class="textInput" type="text">
+            </div>
+
+            <div class="fieldWithInput">
+                <p class="label">Дата начала действия (В формате YYYY-MM-DD): </p>
+                <input id="startDateInput" class="textInput" type="text">
+            </div>
+
+            <div class="fieldWithInput">
+                <p class="label">Дата окончания действия (В формате YYYY-MM-DD): </p>
+                <input id="endDateInput" class="textInput" type="text">
+            </div>
+
+            <div class="fieldWithInput">
+                <p class="label">Адрес: </p>
+                <input id="addressInput" class="textInput" type="text">
+            </div>
+
+            <div class="fieldWithInput">
+                <p class="label">Площадь помещения (положительное число (может быть дробным)): </p>
+                <input id="areaInput" class="textInput" type="text">
+            </div>
+
+            <div class="fieldWithInput">
+                <p class="label">Проживающие (id проживающих через запятую): </p>
+                <input id="residentsInput" class="textInput" type="text">
+            </div>
+
+        </div>
+
+        <div id="button">
+            <button id="sendButton">Отправить</button>
+        </div>
+    </div>
+
+
+    <script>
+        const sendButton = document.getElementById("sendButton");
+
+        function generateAccountFromInputs() {
+            let account = {
+                accountNumber: document.getElementById("accountNumberInput").value,
+                startDate: document.getElementById("startDateInput").value,
+                endDate: document.getElementById("endDateInput").value,
+                address: document.getElementById("addressInput").value,
+                area: document.getElementById("areaInput").value,
+                residentsIds: document.getElementById("residentsInput").value
+            };
+
+            return JSON.parse(JSON.stringify(account));
+        }
+
+        async function sendAccount() {
+            const account = generateAccountFromInputs();
+            console.log("Json: ", account);
+            console.log("Stringed: ", JSON.stringify(account));
+            await fetch(
+                'https://localhost:5075/api/accounts/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(account)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        console.log("Error")
+                    }
+                    else {
+                        console.log("Success!");
+                        alert("Аккаунт сохранён!")
+                        window.location.assign("/");
+                    }
+                })
+                .catch(err => console.log(err));
+        }
+
+        function showError() {
+
+        }
+
+        function setListenerOnSendButton() {
+            sendButton.addEventListener('click', () => sendAccount());
+        }
+
+        function init() {
+            setListenerOnSendButton();
+        }
+
+        init();
+
+    </script>
+
+</body>
+
+</html>

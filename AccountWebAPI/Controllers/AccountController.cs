@@ -28,6 +28,7 @@ public class AccountController : ControllerBase
     [HttpPost]
     async public Task<IResult> PostAccount(Account account)
     {
+        Console.WriteLine("This is POST account!");
         if (!_ValidateNewAccount(account, out var message))
             return Results.BadRequest(message);
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        #container{
+            text-align: center;
+        }
+        #dataDiv{
+            border: 5px solid black;
+        }
+    </style>
+    <title>Account managing</title>
+</head>
+<body>
+    <div id="container">
+        <h1 id="accountHeader">Лицевой счет</h1>
+
+        <div id="dataDiv">
+            <p id="accountNumber">Номер ЛС: N</p>
+            <p id="startDate">Дата начала действия: N</p>
+            <p id="endDate">Дата окончания действия: N</p>
+            <p id="address">Адрес: N</p>
+            <p id="area">Площадь помещения: N</p>
+            <p id="residents">Проживающие: N</p>
+        </div>
+
+        <div id="buttons">
+            <button id="editButton">Редактировать</button>
+            <button id="deleteButton">Удалить</button>
+        </div>
+    </div>
+
+
+<script>
+    const editButton = document.getElementById("editButton");
+    const deleteButton = document.getElementById("deleteButton");
+
+    
+    async function getAccount(){
+        const location = window.location.href;
+        const accountId = location.substring(location.lastIndexOf("/"));
+
+        const response = await fetch('https://localhost:5075/api/accounts' + accountId);
+        const data = await response.json();
+        const account = JSON.parse(data);
+        return account;
+    }
+
+    function changeAccountHeaderText(account){
+        const accountHeader = document.getElementById('accountHeader');
+        accountHeader.innerHTML = "Лицевой счёт №" + account.accountNumber;
+    }
+
+    function renderDataDiv(account){
+        replaceElementText("accountNumber", account.accountNumber);
+        replaceElementText("startDate", getDateFromJsonDate(account.startDate));
+        replaceElementText("endDate", getDateFromJsonDate(account.endDate));
+        replaceElementText("address", account.address);
+        replaceElementText("area", account.area);
+        replaceElementText("residents", account.residentsIds);
+    }
+
+    function setEventListenersOnButtons(account){
+        editButton.addEventListener('click', () => sendOnEditAccountPage(account));
+        deleteButton.addEventListener('click', () => deleteAccountPressed(account));
+    }
+
+    async function init(){
+        const account = await getAccount();
+        changeAccountHeaderText(account);
+        renderDataDiv(account);
+        setEventListenersOnButtons(account);
+    }
+
+    init();
+
+    function sendOnEditAccountPage(account){
+        window.location.assign("/" + account.id + "/edit");
+    }
+
+    async function deleteAccountPressed(account){
+        const isUserAgreed = confirm("Вы уверены что хотите удалить аккаунт?");
+        if (isUserAgreed){
+            await fetch(
+                'https://localhost:5075/api/accounts/' + account.id, {
+                method: 'DELETE'
+            });
+            alert("Аккаунт успешно удалён")
+            window.location.assign("/");
+        }
+    }
+
+    function replaceElementText(elementName, newText){
+        const element = document.getElementById(elementName);
+        text = element.innerHTML;
+        element.innerHTML = text.replace("N", newText);
+    }
+
+    function getDateFromJsonDate(string){
+        tPos = string.indexOf("T");
+        return string.slice(0, tPos);
+    }
+
+</script>
+    
+</body>
+</html>
