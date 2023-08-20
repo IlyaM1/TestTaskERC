@@ -1,8 +1,8 @@
-﻿using System.Text;
-using System;
-using System.Text.Json;
+﻿using System.Text.Json;
+using AccountManagingServer.Utils;
+using AccountManagingServer.Entities;
 
-namespace AccountManagingServer;
+namespace AccountManagingServer.Middlewares;
 
 public class ApiServerHandlerMiddleware
 {
@@ -11,8 +11,8 @@ public class ApiServerHandlerMiddleware
 
     public ApiServerHandlerMiddleware(RequestDelegate next, string apiServerUrl)
     {
-        this._next = next;
-        this._apiServerUrl = apiServerUrl;
+        _next = next;
+        _apiServerUrl = apiServerUrl;
     }
 
     public async Task InvokeAsync(HttpContext context)

@@ -1,4 +1,4 @@
-using AccountManagingServer;
+using AccountManagingServer.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();

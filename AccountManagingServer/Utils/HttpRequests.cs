@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace AccountManagingServer;
+namespace AccountManagingServer.Utils;
 
 public static class HttpRequests
 {

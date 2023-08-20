@@ -1,7 +1,8 @@
-﻿using Newtonsoft.Json;
-using System.Text;
+﻿using AccountManagingServer.Utils;
+using AccountManagingServer.Entities;
+using Newtonsoft.Json;
 
-namespace AccountManagingServer;
+namespace AccountManagingServer.Middlewares;
 
 public class SearchMiddleware
 {
@@ -10,8 +11,8 @@ public class SearchMiddleware
 
     public SearchMiddleware(RequestDelegate next, string apiServerUrl)
     {
-        this._next = next;
-        this._apiServerUrl = apiServerUrl;
+        _next = next;
+        _apiServerUrl = apiServerUrl;
     }
 
     public async Task InvokeAsync(HttpContext context)

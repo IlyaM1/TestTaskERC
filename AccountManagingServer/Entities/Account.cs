@@ -1,4 +1,4 @@
-﻿namespace AccountManagingServer;
+﻿namespace AccountManagingServer.Entities;
 
 public class Account
 {

@@ -1,3 +1,6 @@
 .vs/
 bin/
 obj/
+accounts.db
+accounts.db-shm
+accounts.db-wal
