@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        #container {
+            text-align: center;
+        }
+
+        #dataDiv {
+            border: 5px solid black;
+        }
+
+        /* 
+        p{
+            border: 2px solid black;
+        }
+        .fieldWithInput{
+            width: 90px;
+            display:inline-flex;
+        }
+        .label{
+            width: 100px;
+        }
+        input{
+            width: 200px;
+            height: 50%;
+        } */
+    </style>
+    <title>Account managing</title>
+</head>
+
+<body>
+    <div id="container">
+        <h1 id="accountHeader">Лицевой счет</h1>
+
+        <div id="dataDiv">
+
+            <div class="fieldWithInput">
+                <p class="label">Номер ЛС: </p>
+                <input id="accountNumberInput" class="textInput" type="text">
+            </div>
+
+            <div class="fieldWithInput">
+                <p class="label">Дата начала действия (В формате YYYY-MM-DD): </p>
+                <input id="startDateInput" class="textInput" type="text">
+            </div>
+
+            <div class="fieldWithInput">
+                <p class="label">Дата окончания действия (В формате YYYY-MM-DD): </p>
+                <input id="endDateInput" class="textInput" type="text">
+            </div>
+
+            <div class="fieldWithInput">
+                <p class="label">Адрес: </p>
+                <input id="addressInput" class="textInput" type="text">
+            </div>
+
+            <div class="fieldWithInput">
+                <p class="label">Площадь помещения (положительное число (может быть дробным)): </p>
+                <input id="areaInput" class="textInput" type="text">
+            </div>
+
+            <div class="fieldWithInput">
+                <p class="label">Проживающие (id проживающих через запятую): </p>
+                <input id="residentsInput" class="textInput" type="text">
+            </div>
+
+        </div>
+
+        <div id="button">
+            <button id="sendButton">Отправить</button>
+        </div>
+    </div>
+
+
+    <script>
+        const sendButton = document.getElementById("sendButton");
+
+        function getAccountIdFromRoute() {
+            let location = window.location.href;
+            location = location.slice(0, location.length - 5);
+            return location.substring(location.lastIndexOf("/")).slice(1);
+        }
+
+        async function getAccount() {
+            const accountId = getAccountIdFromRoute();
+            console.log(accountId);
+
+            const response = await fetch('https://localhost:5075/api/accounts/' + accountId);
+            const data = await response.json();
+            const account = JSON.parse(data);
+            return account;
+        }
+
+        function renderDataDiv(account) {
+            setTextOnInput("accountNumberInput", account.accountNumber);
+            setTextOnInput("startDateInput", getDateFromJsonDate(account.startDate));
+            setTextOnInput("endDateInput", getDateFromJsonDate(account.endDate));
+            setTextOnInput("addressInput", account.address);
+            setTextOnInput("areaInput", account.area);
+            setTextOnInput("residentsInput", account.residentsIds);
+        }
+
+        function setTextOnInput(inputName, text) {
+            document.getElementById(inputName).setAttribute("value", text);
+        }
+
+        function getDateFromJsonDate(string) {
+            tPos = string.indexOf("T");
+            return string.slice(0, tPos);
+        }
+
+        function generateAccountFromInputs() {
+            let account = {
+                accountNumber: document.getElementById("accountNumberInput").value,
+                startDate: document.getElementById("startDateInput").value,
+                endDate: document.getElementById("endDateInput").value,
+                address: document.getElementById("addressInput").value,
+                area: document.getElementById("areaInput").value,
+                residentsIds: document.getElementById("residentsInput").value
+            };
+
+            return JSON.parse(JSON.stringify(account));
+        }
+
+        function generateAccountFromInputs() {
+            let account = {
+                accountNumber: document.getElementById("accountNumberInput").value,
+                startDate: document.getElementById("startDateInput").value,
+                endDate: document.getElementById("endDateInput").value,
+                address: document.getElementById("addressInput").value,
+                area: document.getElementById("areaInput").value,
+                residentsIds: document.getElementById("residentsInput").value
+            };
+
+            return JSON.parse(JSON.stringify(account));
+        }
+
+        async function updateAccount() {
+            const accountId = getAccountIdFromRoute();
+            const account = generateAccountFromInputs();
+
+            console.log("Json: ", account);
+            console.log("Stringed: ", JSON.stringify(account));
+
+            await fetch(
+                'https://localhost:5075/api/accounts/' + accountId, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(account)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        console.log("Error")
+                    }
+                    else {
+                        console.log("Success!");
+                        alert("Аккаунт сохранён!")
+                        window.location.assign("/");
+                    }
+                })
+                .catch(err => console.log(err));
+        }
+
+        function showError() {
+
+        }
+
+        function setListenerOnSendButton() {
+            sendButton.addEventListener('click', () => updateAccount());
+        }
+
+        async function init() {
+            const account = await getAccount();
+            renderDataDiv(account);
+            setListenerOnSendButton();
+        }
+
+        init();
+
+    </script>
+
+</body>
+
+</html>

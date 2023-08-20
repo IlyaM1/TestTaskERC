@@ -38,7 +38,7 @@
     const deleteButton = document.getElementById("deleteButton");
 
     
-    async function getAccount(){
+    async function getAccount() {
         const location = window.location.href;
         const accountId = location.substring(location.lastIndexOf("/"));
 
@@ -48,12 +48,12 @@
         return account;
     }
 
-    function changeAccountHeaderText(account){
+    function changeAccountHeaderText(account) {
         const accountHeader = document.getElementById('accountHeader');
         accountHeader.innerHTML = "Лицевой счёт №" + account.accountNumber;
     }
 
-    function renderDataDiv(account){
+    function renderDataDiv(account) {
         replaceElementText("accountNumber", account.accountNumber);
         replaceElementText("startDate", getDateFromJsonDate(account.startDate));
         replaceElementText("endDate", getDateFromJsonDate(account.endDate));
@@ -62,12 +62,12 @@
         replaceElementText("residents", account.residentsIds);
     }
 
-    function setEventListenersOnButtons(account){
+    function setEventListenersOnButtons(account) {
         editButton.addEventListener('click', () => sendOnEditAccountPage(account));
         deleteButton.addEventListener('click', () => deleteAccountPressed(account));
     }
 
-    async function init(){
+    async function init() {
         const account = await getAccount();
         changeAccountHeaderText(account);
         renderDataDiv(account);
@@ -76,11 +76,11 @@
 
     init();
 
-    function sendOnEditAccountPage(account){
+    function sendOnEditAccountPage(account) {
         window.location.assign("/" + account.id + "/edit");
     }
 
-    async function deleteAccountPressed(account){
+    async function deleteAccountPressed(account) {
         const isUserAgreed = confirm("Вы уверены что хотите удалить аккаунт?");
         if (isUserAgreed){
             await fetch(
@@ -92,13 +92,13 @@
         }
     }
 
-    function replaceElementText(elementName, newText){
+    function replaceElementText(elementName, newText) {
         const element = document.getElementById(elementName);
         text = element.innerHTML;
         element.innerHTML = text.replace("N", newText);
     }
 
-    function getDateFromJsonDate(string){
+    function getDateFromJsonDate(string) {
         tPos = string.indexOf("T");
         return string.slice(0, tPos);
     }

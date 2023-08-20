@@ -11,5 +11,6 @@ app.Map("/{id}/edit", async (context) => await context.Response.SendFileAsync("h
 app.Map("/new", async (context) => await context.Response.SendFileAsync("html/new_account.html"));
 
 app.UseMiddleware<ApiServerHandlerMiddleware>(serverUrl);
+app.UseMiddleware<SearchMiddleware>(serverUrl);
 
 app.Run();  
