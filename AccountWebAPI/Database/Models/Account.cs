@@ -2,11 +2,11 @@
 
 public class Account : BaseModel
 {
-    public required string AccountNumber { get; set; }
-    public required DateTime StartDate { get; set; }
-    public required DateTime EndDate { get; set; }
-    public required string Address { get; set; }
-    public required double Area { get; set; }
+    public string AccountNumber { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
+    public string Address { get; set; }
+    public double Area { get; set; }
 
     public virtual List<Resident> Residents { get; set; } = [];
 }

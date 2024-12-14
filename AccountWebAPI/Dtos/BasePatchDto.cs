@@ -2,7 +2,7 @@
 
 namespace AccountWebAPI.Dtos;
 
-public abstract class BasePatchDto<T>
+public abstract record BasePatchDto<T>
     where T : BaseModel
 {
     /// <summary>
