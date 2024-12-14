@@ -7,24 +7,15 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7280"
+      "applicationUrl": "https://localhost:7280",
+      "launchUrl": "https://localhost:7280/swagger/index.html"
     },
     "Docker": {
       "commandName": "Docker",
-      "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "applicationUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "publishAllPorts": true,
-      "useSSL": true,
-      "sslPort": 7280
-    }
-  },
-  "$schema": "https://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:48551",
-      "sslPort": 44306
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:{ServicePort}/swagger/index.html"
     }
   }
 }

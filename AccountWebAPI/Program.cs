@@ -5,13 +5,25 @@ using AccountWebAPI.Database.Repositories.EfImplementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddControllers();
 builder.Services.AddEntityFrameworkSqlite().AddDbContext<AppDbContext>();
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
-var app = builder.Build();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
 
+var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();

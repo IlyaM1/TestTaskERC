@@ -20,7 +20,7 @@ public record PatchAccountDto(
 
 public record CreateAccountDto(
     [param: Required]
-    [param: StringLength(12)]
+    [param: Length(12, 12)]
     string AccountNumber,
 
     [param: Required]
