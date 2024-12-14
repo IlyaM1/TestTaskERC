@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AccountWebAPI.Database.Models;
 
-namespace AccountWebAPI;
+using Microsoft.EntityFrameworkCore;
+
+namespace AccountWebAPI.Database;
 
 public class AppDbContext : DbContext
 {

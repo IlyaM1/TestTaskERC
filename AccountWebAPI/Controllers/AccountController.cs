@@ -1,9 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AccountWebAPI.Database;
+using AccountWebAPI.Database.Models;
+
+using Microsoft.AspNetCore.Mvc;
+
 using System.Text.Json;
 
 namespace AccountWebAPI.Controllers;
 
 [ApiController]
+[Route("api/v1")]
 public class AccountController : ControllerBase
 {
     private readonly ILogger<AccountController> _logger;
@@ -15,7 +20,7 @@ public class AccountController : ControllerBase
         _dbContext = dbContext;
     }
 
-    [Route("api/accounts")]
+    [Route("accounts")]
     [HttpGet]
     async public Task<IResult> GetAccounts()
     {
@@ -24,7 +29,7 @@ public class AccountController : ControllerBase
         return Results.Json(accounts);
     }
 
-    [Route("api/accounts")]
+    [Route("accounts")]
     [HttpPost]
     async public Task<IResult> PostAccount(Account account)
     {
@@ -38,7 +43,7 @@ public class AccountController : ControllerBase
         return Results.Ok();
     }
 
-    [Route("api/accounts")]
+    [Route("accounts")]
     [HttpPatch]
     async public Task<IResult> UpdateAccount(Account account)
     {
@@ -51,7 +56,7 @@ public class AccountController : ControllerBase
         return Results.Ok();
     }
 
-    [Route("api/accounts")]
+    [Route("accounts")]
     [HttpDelete]
     async public Task<IResult> DeleteAccountByObject(Account account)
     {
@@ -61,7 +66,7 @@ public class AccountController : ControllerBase
         return Results.Ok();
     }
 
-    [Route("api/accounts/{id:int}")]
+    [Route("accounts/{id:int}")]
     [HttpGet]
     async public Task<IResult> GetAccountById(int id)
     {
@@ -72,7 +77,7 @@ public class AccountController : ControllerBase
         return Results.Json(account);
     }
 
-    [Route("api/accounts/{id:int}")]
+    [Route("accounts/{id:int}")]
     [HttpDelete]
     async public Task<IResult> DeleteAccountById(int id)
     {
